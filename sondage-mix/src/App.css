@@ -2,6 +2,42 @@
 .App {
   text-align: center;
 }
+.bg-custom-gold {
+  background-color: #FF9F00;
+}
+header{
+  width: 100%;
+  height: auto;
+  font-family: 'Times New Roman', Times, serif;
+  
+ 
+}
+header p{
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+section{
+  width: 100%;
+  height: auto;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  padding: 20px;
+  background-color: white;
+}
+section h1{
+  color: #FF9F00;
+}
+section p{
+  color: grey;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1px;
+}
+footer{
+  background-color: #e6e6ecc0;
+  color: #FF9F00;
+  
+}
 
 .App-logo {
   height: 40vmin;
@@ -39,25 +75,10 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.content{
-height: 80vh;
-/* @media (max-width: 600px) {
-  height: 100vh; 
-} */
-}
 
-
-
-
-.App-header {
+App-header {
   background-color: #e6e6ecc0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
 .App-link {

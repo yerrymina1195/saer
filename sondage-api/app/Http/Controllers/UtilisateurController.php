@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Sondage;
 use App\Models\Utilisateur;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Stmt\TryCatch;
 
 class UtilisateurController extends Controller
 {
@@ -58,6 +60,23 @@ public function login(LoginUserRequest $request)
     
 }
 
+public function logout()
+ {
+     try {
+        auth()->user()->tokens->each(function ($token, $key) {
+            $token->delete();
+        });
+        return response()->json([
+               'status_message' => 'Deconnexion reussie!',
+               'status_code' => 200
+           ]);
+
+     } catch (Exception $e) {
+        return response()->json($e);
+     }
+ }
+
+//liste de tous les utilisateurs
 public function index(Request $request)
     {
         try {
@@ -80,6 +99,23 @@ public function index(Request $request)
                 'items' => $result
             ]);
             
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+    }
+
+    public function update(UpdateUserRequest $request)
+    {
+        try {
+            $user = Utilisateur::where('id', Auth::user()->id)->firstOrFail();
+            $user->update($request->validated());
+
+            return response()->json([
+                'status_code' => 200,
+                'status_message' => 'modification réussie',
+                'utilisateur' => $user
+            ]);
+
         } catch (Exception $e) {
             return response()->json($e);
         }

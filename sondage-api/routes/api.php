@@ -28,11 +28,17 @@ Route::post('/register', [UtilisateurController::class, 'register']);
 Route::post('/login', [UtilisateurController::class, 'login']);
 // Route::post('sondage/create', [SondageController::class, 'store']);
 
+
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('/utilisateurs', [UtilisateurController::class, 'index']);
     Route::post('/sondage/create', [SondageController::class, 'store']);
     Route::get('/sondage/liste', [SondageController::class, 'sondage']);
-    Route::get('/sondage/{sondage}', [SondageController::class, 'singleSondage']);
+    Route::get('/sondage/view', [SondageController::class, 'view']);
+    Route::post('/send-mail/{sondage}', [SondageController::class, 'mail']);
+    Route::get('/sondages', [SondageController::class, 'sondages']);
+    Route::get('/sondage/{sondage}', [SondageController::class, 'show']);
+    Route::post('/logout', [UtilisateurController::class, 'logout']);
+    Route::post('/update', [UtilisateurController::class, 'update']);
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
